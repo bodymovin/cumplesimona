@@ -4,8 +4,8 @@ import RiveMobile from "./RiveMobile";
 import { useEffect, useState } from "react";
 
 export default function Home(request: any) {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+  const [width, setWidth] = useState(global?.window && window.innerWidth || 0);
+  const [height, setHeight] = useState(global?.window && window.innerHeight || 0);
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
