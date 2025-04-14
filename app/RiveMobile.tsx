@@ -8,6 +8,7 @@ export default function RiveMobile() {
     autoplay: true,
     artboard: "InvitacionPhone",
     stateMachines: ["State Machine 1"],
+    automaticallyHandleEvents: true,
     layout: new Layout({
       fit: Fit.Cover,
     }),

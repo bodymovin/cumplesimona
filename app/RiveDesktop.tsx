@@ -8,6 +8,7 @@ export default function RiveDesktop() {
     autoplay: true,
     artboard: "InvitacionWeb",
     stateMachines: ["State Machine 1"],
+    automaticallyHandleEvents: true,
     layout: new Layout({
       fit: Fit.Cover,
     }),
