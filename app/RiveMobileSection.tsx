@@ -1,44 +1,42 @@
 "use client";
-import { Fit, Layout, useRive } from "@rive-app/react-webgl2";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import RiveElement, { RiveElementProps } from "./RiveElement";
 
-type RiveMobileSectionProps = {
-  section: string;
-}
-
-export default function RiveMobileSection({section}: RiveMobileSectionProps) {
-  const { rive, RiveComponent } = useRive({
-    src: './invitacion.riv',
-    autoplay: true,
-    artboard: section,
-    stateMachines: ["State Machine 1"],
-    automaticallyHandleEvents: false,
-    isTouchScrollEnabled: true,
-
-    layout: new Layout({
-      fit: Fit.Cover,
-      layoutScaleFactor: 1,
-    }),
-  });
+export default function RiveMobileSection({ section }: RiveElementProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const targetRef = useRef(null);
   useEffect(() => {
-    function resize() {
-      if (rive != null) {
-        rive.resizeDrawingSurfaceToCanvas();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        root: null, // viewport
+        rootMargin: "0px", // no margin
+        threshold: 0.01, // 1% of target visible
       }
+    );
+
+    if (targetRef.current) {
+      observer.observe(targetRef.current);
     }
-    window.addEventListener("resize", resize);
+
+    // Clean up the observer
     return () => {
-      window.removeEventListener("resize", resize);
+      if (targetRef.current) {
+        observer.unobserve(targetRef.current);
+      }
     };
-  }, [rive]);
+  }, []);
   return (
     <div
+      ref={targetRef}
       style={{
         width: "100%",
         height: "20%",
       }}
     >
-      <RiveComponent />
+      {isVisible ? <RiveElement section={section} /> : <div />}
     </div>
   );
 }
