@@ -12,7 +12,8 @@ export default function RiveMobileSection({section}: RiveMobileSectionProps) {
     autoplay: true,
     artboard: section,
     stateMachines: ["State Machine 1"],
-    automaticallyHandleEvents: true,
+    automaticallyHandleEvents: false,
+    isTouchScrollEnabled: true,
 
     layout: new Layout({
       fit: Fit.Cover,
