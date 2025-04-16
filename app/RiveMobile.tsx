@@ -1,31 +1,13 @@
 "use client";
-import { Fit, Layout, useRive } from "@rive-app/react-webgl2";
+import { Fit, Layout, RiveFile, useRive } from "@rive-app/react-webgl2";
 import { useEffect } from "react";
+import RiveMobileSection from "./RiveMobileSection";
 
-export default function RiveMobile() {
-  const { rive, RiveComponent } = useRive({
-    src: "./invitacion.riv",
-    autoplay: true,
-    artboard: "InvitacionPhone",
-    stateMachines: ["State Machine 1"],
-    automaticallyHandleEvents: true,
+type RiveMobileProps = {
+  riveFile: RiveFile;
+}
 
-    layout: new Layout({
-      fit: Fit.Cover,
-      layoutScaleFactor: 1,
-    }),
-  });
-  useEffect(() => {
-    function resize() {
-      if (rive != null) {
-        rive.resizeDrawingSurfaceToCanvas();
-      }
-    }
-    window.addEventListener("resize", resize);
-    return () => {
-      window.removeEventListener("resize", resize);
-    };
-  }, [rive]);
+export default function RiveMobile({riveFile}: RiveMobileProps) {
   return (
     <div
       style={{
@@ -34,12 +16,18 @@ export default function RiveMobile() {
         position: "relative",
       }}
     >
-      <RiveComponent />
+      {/* <RiveComponent /> */}
+      <RiveMobileSection section="HeaderPhoneLayout"/>
+      <RiveMobileSection section="CuandoSectionLayout"/>
+      <RiveMobileSection section="DCodeSectionLayout"/>
+      <RiveMobileSection section="DondeSectionLayout"/>
+      <RiveMobileSection section="AliasSectionLayout"/>
       <div
         style={{
           width: "100%",
           height: "100%",
           position: "absolute",
+          pointerEvents: "none",
           top: 0,
           left: 0,
           backgroundColor: "rgba(100, 0, 0, 0)",
@@ -62,6 +50,7 @@ export default function RiveMobile() {
               position: "absolute",
               top: "25%",
               left: "15%",
+              pointerEvents: "auto",
               backgroundColor: "rgba(0, 0, 100, 0)",
             }}
             href="https://www.google.com/maps/place/Ble+Eventos/@-34.6077056,-58.5144777,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcb7d185e919ab:0x804218ff5dd74729!8m2!3d-34.6077056!4d-58.5144777!16s%2Fg%2F11cnmqfsc9?entry=ttu&g_ep=EgoyMDI1MDQwOS4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
