@@ -1,28 +1,28 @@
 "use client";
-import { Fit, Layout, useRive } from "@rive-app/react-webgl2";
-import { useEffect } from "react";
+import { RiveFile } from "@rive-app/react-webgl2";
+import RiveDesktopSection from "./RiveSection";
+import Overlay from "./Overlay";
 
-export default function RiveDesktop() {
-  const { rive, RiveComponent } = useRive({
-    src: "./invitacion.riv",
-    autoplay: true,
-    artboard: "InvitacionWeb",
-    stateMachines: ["State Machine 1"],
-    automaticallyHandleEvents: true,
-    layout: new Layout({
-      fit: Fit.Cover,
-    }),
-  });
-  useEffect(() => {
-    function resize() {
-      if (rive != null) {
-        rive.resizeDrawingSurfaceToCanvas();
-      }
-    }
-    window.addEventListener("resize", resize);
-    return () => {
-      window.removeEventListener("resize", resize);
-    };
-  }, [rive]);
-  return <RiveComponent />;
+type RiveMobileProps = {
+  riveFile: RiveFile;
+};
+
+export default function RiveDesktop({ riveFile }: RiveMobileProps) {
+  return (
+    <div
+      style={{
+        height: "500%",
+        aspectRatio: 1920 / (1080 * 5),
+        position: "relative",
+        flexShrink: 0,
+      }}
+    >
+      <RiveDesktopSection section="HeaderSectionWeb" riveFile={riveFile} />
+      <RiveDesktopSection section="CuandoSectionWeb" riveFile={riveFile} />
+      <RiveDesktopSection section="DCodeSectionWeb" riveFile={riveFile} />
+      <RiveDesktopSection section="DondeSectionWeb" riveFile={riveFile} />
+      <RiveDesktopSection section="AliasSectionWeb" riveFile={riveFile} />
+      <Overlay />
+    </div>
+  );
 }

@@ -1,14 +1,15 @@
 "use client";
-import { Fit, Layout, useRive } from "@rive-app/react-webgl2";
+import { Fit, Layout, RiveFile, useRive } from "@rive-app/react-webgl2";
 import { useEffect } from "react";
 
 export type RiveElementProps = {
   section: string;
+  riveFile?: RiveFile;
 };
 
-export default function RiveElement({ section }: RiveElementProps) {
+export default function RiveElement({ section, riveFile }: RiveElementProps) {
   const { rive, RiveComponent } = useRive({
-    src: "./invitacion.riv",
+    riveFile: riveFile,
     autoplay: true,
     artboard: section,
     stateMachines: ["State Machine 1"],

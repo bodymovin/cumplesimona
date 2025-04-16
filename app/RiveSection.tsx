@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import RiveElement, { RiveElementProps } from "./RiveElement";
 
-export default function RiveMobileSection({
+export default function RiveSection({
   section,
   riveFile,
 }: RiveElementProps) {
