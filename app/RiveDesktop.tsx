@@ -11,8 +11,8 @@ export default function RiveDesktop({ riveFile }: RiveMobileProps) {
   return (
     <div
       style={{
-        height: "500%",
-        aspectRatio: 1920 / (1080 * 5),
+        height: "600%",
+        aspectRatio: 1920 / (1080 * 6),
         position: "relative",
         flexShrink: 0,
       }}
@@ -21,7 +21,8 @@ export default function RiveDesktop({ riveFile }: RiveMobileProps) {
       <RiveDesktopSection section="CuandoSectionWeb" riveFile={riveFile} />
       <RiveDesktopSection section="DCodeSectionWeb" riveFile={riveFile} />
       <RiveDesktopSection section="DondeSectionWeb" riveFile={riveFile} />
-      <RiveDesktopSection section="AliasSectionWeb" riveFile={riveFile} />
+      <RiveDesktopSection section="CnfirmarAsistSectionWeb" riveFile={riveFile} />
+      <RiveDesktopSection section="AliasSectionWebBlack" riveFile={riveFile} />
       <Overlay />
     </div>
   );

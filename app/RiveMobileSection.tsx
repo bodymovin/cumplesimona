@@ -36,7 +36,7 @@ export default function RiveMobileSection({
       ref={targetRef}
       style={{
         width: "100%",
-        height: "20%",
+        height: "16.6%",
       }}
     >
       {isVisible ? (
